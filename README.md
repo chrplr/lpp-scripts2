@@ -12,7 +12,7 @@ For example, to run on garvin
 	export ROOT_DIR=/home/jth99/lpp
 	export SUBJECTS_FMRI_DATA=/home/jth99/lpp
 	
-	make hrf
+	make hrfs
 	make design-matrices
 	make first-level
 	make second-level
@@ -20,3 +20,7 @@ For example, to run on garvin
 
 
 
+Requirements:
+
+- Python: pandas, nistats, nibabel, nilearn
+- R: car, rmarkdown
