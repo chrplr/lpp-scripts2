@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-# Time-stamp: <2017-07-19 22:56:43 cp983411>
+# Time-stamp: <2017-07-20 07:52:32 cp983411>
 
 import sys
 import getopt
@@ -21,9 +21,10 @@ from nistats.design_matrix import plot_design_matrix
 from nilearn.plotting import plot_stat_map
 from nilearn.plotting import plot_glass_brain
 
+
 def process_subject(inputpath, subjid, dtx_mat, outputpath):
     subjglm = op.join(outputpath, "cache", "glm_{}".format(subjid))
-    subjid = str(subjid)    
+    subjid = str(subjid)
     if op.isfile(subjglm):
         print('Loading already saved model for subject %s' % subjid)
         fmri_glm = load(subjglm)  # the model has already been estimated
@@ -38,12 +39,12 @@ def process_subject(inputpath, subjid, dtx_mat, outputpath):
         fmri_glm = FirstLevelModel(
             t_r=2.0,
             hrf_model='spm',
-            #mask='mask_ICV.nii',
+            # mask='mask_ICV.nii',
             noise_model='ar1',
             period_cut=128.0,
             smoothing_fwhm=0,
             minimize_memory=True,
-            #memory='/mnt/ephemeral/cache',
+            # memory='/mnt/ephemeral/cache',
             memory=None,
             verbose=2,
             n_jobs=1)
@@ -61,8 +62,7 @@ def process_subject(inputpath, subjid, dtx_mat, outputpath):
     ncon = len(con_names)
     con = np.eye(ncon)
     for i, name in enumerate(con_names):
-        contrasts[name] = con[i,:]
-
+        contrasts[name] = con[i, :]
 
     for name, val in contrasts.items():
         z_map = fmri_glm.compute_contrast(val, output_type='z_score')
@@ -75,17 +75,19 @@ def process_subject(inputpath, subjid, dtx_mat, outputpath):
         display.savefig(op.join(outputpath, '%s_%s_glassbrain.png' % (name, subjid)))
         display.close()
 
- 
 
 if __name__ == '__main__':
     # parse command line
     try:
         opts, args = getopt.getopt(sys.argv[1:],
                                    "d:s:o:",
-                                   ["design_matrices=","subject_fmri_data=", "output_dir="])
+                                   ["design_matrices=",
+                                    "subject_fmri_data=",
+                                    "output_dir="])
     except getopt.GetoptError as err:
         print(err)
         sys.exit(2)
+        
     for o, a in opts:
         if o in ('-d', '--design_matrices'):
             dmtx_dir = a
@@ -102,7 +104,7 @@ if __name__ == '__main__':
     
     design_files = sorted(glob.glob(op.join(dmtx_dir, 'dmtx_?_ortho.csv')))
     dtx_mat0 = [pd.read_csv(df) for df in design_files]
-    dtx_mat = [ ((dtx - dtx.mean()) / dtx.std()) for dtx in dtx_mat0]
+    dtx_mat = [((dtx - dtx.mean()) / dtx.std()) for dtx in dtx_mat0]
     for i, d in enumerate(dtx_mat):
         plt.plot(d)
         plt.savefig(op.join(output_dir, 'dtx_plot_%s.png' % str(i + 1)))
@@ -113,7 +115,7 @@ if __name__ == '__main__':
 
     subjlist = [57, 58, 59, 61, 62, 63, 64, 65, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 86, 87, 88, 89, 91, 92, 93, 94, 95, 96, 97, 99, 100, 101, 103, 104]
 
-    subjlist = [57]
+#    subjlist = [57]
 
     if os.getenv('SEQUENTIAL') is not None:
         for s in subjlist:
