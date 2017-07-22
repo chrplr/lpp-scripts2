@@ -1,0 +1,3 @@
+export ROOT_DIR = /home/jth99/lpp
+export SUBJECTS_FMRI_DATA ?= $(ROOT_DIR)
+export HRF_DIR ?= $(ROOT_DIR)/lpp-results/hrfs
