@@ -1,0 +1,4 @@
+export ROOT_DIR=/neurospin/unicog/protocols/IRMf/LePetitPrince_Pallier_2018/MRI/
+export SUBJECTS_FMRI_DATA=${ROOT_DIR}/english-fmri-data
+
+

@@ -6,6 +6,9 @@ SHELL := /bin/bash
 
 export PATH := bin:$(PATH)
 
+
+# DO NOT EDIT THIS PART (unless you know what you are doing)
+# set the environment variables in the shell before calling `make`
 export MODEL ?= model01
 export REGS ?=  bottomup f0 freq rms mwe wordrate
 export ROOT_DIR ?= /volatile/Le_Petit_Prince

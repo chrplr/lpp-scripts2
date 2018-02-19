@@ -3,7 +3,7 @@ Script to analyze fMRI data from the Little Prince project
 
 Christophe@pallier.org
 
-Everything is the Makefile. 
+Everything is the Makefile. READ it! 
 
 For example, to run on garvin
 
@@ -15,7 +15,12 @@ For example, to run on garvin
 	make second-level
 	make roi-analyses
 
-Note: you can change the environments variables to control to location of files (check the Makefile)
+
+To create a new model:
+- create a setenv* file exporting the relevant environement variables, specify the data location, the regressors, ... (see the top of the Makefile for the list of variables; but do not edit the Makefile!)
+- if your model is, say, 'mymodel', create mymodel-first-level.py and mymodel-orthonormalize.py
+
+
 
 
 Requirements:

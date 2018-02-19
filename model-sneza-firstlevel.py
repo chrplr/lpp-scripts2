@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-# Time-stamp: <2018-02-18 11:25:51 cp983411>
+# Time-stamp: <2018-02-18 11:18:53 cp983411>
 
 import sys
 import getopt
@@ -17,12 +17,14 @@ import matplotlib.pyplot as plt
 
 import nistats
 from nistats.first_level_model import FirstLevelModel
-from nistats.design_matrix import plot_design_matrix
+from nistats.reporting import plot_design_matrix
 from nilearn.plotting import plot_stat_map
 from nilearn.plotting import plot_glass_brain
 
 
 def process_subject(inputpath, subjid, dtx_mat, outputpath):
+    print("design matrix size")
+    print(dtx_mat[0].shape)
     subjglm = op.join(outputpath, "cache", "glm_{}".format(subjid))
     subjid = str(subjid)
     if op.isfile(subjglm):
@@ -66,7 +68,7 @@ def process_subject(inputpath, subjid, dtx_mat, outputpath):
 
     for name, val in contrasts.items():
         z_map = fmri_glm.compute_contrast(val, output_type='z_score')
-        eff_map = fmri_glm.compute_contrast(val, output_type='effect_size')
+        eff_map = fmri_glm.compute_co/neurospin/unicog/protocols/IRMf/LePetitPrince_Pallier_2018/MRI//lpp-results/model-sneza-design-matricesntrast(val, output_type='effect_size')
         #std_map = fmri_glm.compute_contrast(val, output_type='stddev')
         nib.save(z_map, op.join(outputpath, '%s_%s_zmap.nii.gz' % (name, subjid)))
         nib.save(eff_map, op.join(outputpath, '%s_%s_effsize.nii.gz'% (name, subjid)))
