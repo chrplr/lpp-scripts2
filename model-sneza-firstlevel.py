@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-# Time-stamp: <2018-02-18 11:18:53 cp983411>
+# Time-stamp: <2018-03-07 11:18:24 cp983411>
 
 import sys
 import getopt
@@ -63,12 +63,17 @@ def process_subject(inputpath, subjid, dtx_mat, outputpath):
     con_names = [i for i in dtx_mat[0].columns]
     ncon = len(con_names)
     con = np.eye(ncon)
+
+    fcon = con[:-1, :]
+    z_map = fmri_glm.compute_contrast(fcon, stat_type='F', output_type='z_score')
+    nib.save(z_map, op.join(outputpath, 'Ftest_%s_zmap.nii.gz' % subjid))
+    
     for i, name in enumerate(con_names):
         contrasts[name] = con[i, :]
 
     for name, val in contrasts.items():
         z_map = fmri_glm.compute_contrast(val, output_type='z_score')
-        eff_map = fmri_glm.compute_co/neurospin/unicog/protocols/IRMf/LePetitPrince_Pallier_2018/MRI//lpp-results/model-sneza-design-matricesntrast(val, output_type='effect_size')
+        eff_map = fmri_glm.compute_contrast(val, output_type='effect_size')
         #std_map = fmri_glm.compute_contrast(val, output_type='stddev')
         nib.save(z_map, op.join(outputpath, '%s_%s_zmap.nii.gz' % (name, subjid)))
         nib.save(eff_map, op.join(outputpath, '%s_%s_effsize.nii.gz'% (name, subjid)))
@@ -104,7 +109,7 @@ if __name__ == '__main__':
     if not op.isdir(op.join(output_dir, 'cache')):
         os.mkdir(op.join(output_dir, 'cache'))
     
-    design_files = sorted(glob.glob(op.join(dmtx_dir, 'dmtx_?_ortho.csv')))
+    design_files = sorted(glob.glob(op.join(dmtx_dir, 'dmtx_?.csv')))
     dtx_mat0 = [pd.read_csv(df) for df in design_files]
     dtx_mat = [((dtx - dtx.mean()) / dtx.std()) for dtx in dtx_mat0]
     for i, d in enumerate(dtx_mat):

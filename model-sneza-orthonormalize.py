@@ -1,5 +1,5 @@
 #! /usr//bin/env python
-# Time-stamp: <2017-07-19 22:44:53 cp983411>
+# Time-stamp: <2018-03-07 11:08:39 cp983411>
 
 
 """ read the design matrices dmt_*.csv and perform a sequential orthogonalization of the variables """
@@ -31,7 +31,7 @@ def ortho_proj(Y, M):
     return Xo
 
 
-if __name__ == '__main__':
+def main():
     data_dir = '.'
     output_dir = '.'
     
@@ -85,3 +85,7 @@ if __name__ == '__main__':
 
         print(around(corrcoef(M2.T), 2))
         plt.close('all')
+    
+
+if __name__ == '__main__':
+    None

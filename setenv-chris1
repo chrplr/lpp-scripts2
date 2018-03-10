@@ -1,3 +1,0 @@
-export ROOT_DIR = /volatile/Le_Petit_Prince
-export SUBJECTS_FMRI_DATA ?= $(ROOT_DIR)/lpp-data
-
