@@ -1,6 +1,6 @@
 #! /bin/bash
 # generate convolved regressors from event files
-# Time-stamp: <2017-07-22 08:25:24 cp983411>
+# Time-stamp: <2018-04-04 11:58:42 cp983411>
 
 set -e  # Any commands which fail will cause the shell script to exit immediately
 set -x  # debug
@@ -16,38 +16,56 @@ fi
 mkdir -p "$OUTPUT_DIR"
 
 for f in "${INPUT_DIR}"1_*.csv; do
-    onsets2hrf -t 2 -n 282 -i $f -o "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ;
+    if [ ! -f "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ]; then
+	onsets2hrf -t 2 -n 282 -i $f -o "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ;
+    fi
 done 
 
 for f in "${INPUT_DIR}"2_*.csv; do
-    onsets2hrf -t 2 -n 298 -i $f -o "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ;
+    if [ ! -f "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ]; then
+	onsets2hrf -t 2 -n 298 -i $f -o "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ;
+    fi
 done 
 
 for f in "${INPUT_DIR}"3_*.csv; do
-    onsets2hrf -t 2 -n 340 -i $f -o "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ;
+    if [ ! -f "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ]; then
+	onsets2hrf -t 2 -n 340 -i $f -o "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ;
+    fi
 done 
 
 for f in "${INPUT_DIR}"4_*.csv; do
-    onsets2hrf -t 2 -n 303 -i $f -o "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ;
+    if [ ! -f "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ]; then
+	onsets2hrf -t 2 -n 303 -i $f -o "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ;
+    fi
 done 
 
 for f in "${INPUT_DIR}"5_*.csv; do
-    onsets2hrf -t 2 -n 265 -i $f -o "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ;
+    if [ ! -f "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ]; then
+	onsets2hrf -t 2 -n 265 -i $f -o "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ;
+    fi
 done 
 
 for f in "${INPUT_DIR}"6_*.csv; do
-    onsets2hrf -t 2 -n 343 -i $f -o "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ;
+    if [ ! -f "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ]; then
+	onsets2hrf -t 2 -n 343 -i $f -o "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ;
+    fi
 done 
 
 for f in "${INPUT_DIR}"7_*.csv; do
-    onsets2hrf -t 2 -n 325 -i $f -o "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ;
+    if [ ! -f "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ]; then
+	onsets2hrf -t 2 -n 325 -i $f -o "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ;
+    fi
 done
 
 for f in "${INPUT_DIR}"8_*.csv; do
-    onsets2hrf -t 2 -n 292 -i $f -o "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ;
+    if [ ! -f "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ]; then
+	onsets2hrf -t 2 -n 292 -i $f -o "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ;
+    fi
 done
 
 for f in "${INPUT_DIR}"9_*.csv; do
-    onsets2hrf -t 2 -n 368 -i $f -o "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ;
+    if [ ! -f "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ]; then
+	onsets2hrf -t 2 -n 368 -i $f -o "$OUTPUT_DIR"`basename ${f%.csv}_reg.csv` ;
+    fi
 done 
 
