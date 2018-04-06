@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-# Time-stamp: <2017-07-19 22:38:21 cp983411>
+# Time-stamp: <2018-04-06 16:32:24 cp983411>
 
 """
 Extract data from contrasts maps in a set of ROIs
@@ -23,7 +23,7 @@ if __name__ == '__main__':
     # defaults
     data_dir = os.getenv('DATA_DIR')
     images = '*effsize*.nii*'
-    mask_dir = 'our-masks'
+    mask_dir = 'ROIs'
     output = 'rois.csv'
     
     # parse command line to change default

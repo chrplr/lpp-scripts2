@@ -3,12 +3,16 @@ Script to analyze fMRI data of the Little Prince project
 
 Christophe@pallier.org
 
-Everything is the Makefile. READ it! 
 
+Before anything, set the ROOT_DIR of the project, for example:
 
-For example, to run on garvin
+    . setroot-garvin
 
-	. setenv-garvin
+To perform an analysis, select or create a model in `models`, for example:
+
+    . setmodel models/en/chrmodels/en/christophe-bottomup/
+
+Then, you can execute the analysis step by step, following the stages in the Makefile
 	
 	make hrfs
 	make design-matrices
@@ -23,12 +27,13 @@ To check the regressors relationships:
 
 To create a new model:
 
+1. create a sub directory in `models` containing a `setenv` file exporting the environment variables specifing the model name, the list of regressors, etc. (see modesl/en/christophe-bottomup/setenv fro an example)
 
-1. add to the folder ` onsets`  one comma separated (.csv) file per variable and per run, containing two columns names 'onset' and 'amplitude'. (onsets is given in seconds). The filename pattern is `X_VARNAME.csv` where X is the run numbner [1-9]
+2. In your model's directory, create `firstlevel.py` and optionnaly, `orthonormalize.py` which will be executed by `make first-level`.
+Create also `group.py` for the siecond level.
 
-2. create a ` setenv*` file exporting the environment variables specifing the model name, the list of regressors, etc. (check the top of the Makefile for the list of variables; but please do not edit the Makefile itself!).
 
-3. if your model is, say, `mymodel` , create ` mymodel-first-level.py`  and ` mymodel-orthonormalize.py` which will be executed by `make first-level`.
+3. If your model includes variables that have not yet been used in previous models, tyou need to add to the folder ` onsets`  one comma separated (.csv) file per variable and per run --- the filename pattern being `X_VARNAME.csv` where X is the run number [1-9]. Each file must contain two columns named 'onset' and 'amplitude' (onsets is given in seconds). 
 
 
 Requirements:

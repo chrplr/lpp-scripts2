@@ -17,7 +17,8 @@ def usage():
     -o output_file  : will contain 2 columns: hrf and its derivative
 
 Example:
-    events2hrf -t 2.0 -n 600 -i f0_short.csv -o f0_reg.csv
+    onset2hrf -t 2.0 -n 600 -i f0_short.csv -o f0_reg.csv
+nsets
 """)
 
 try:
@@ -28,8 +29,6 @@ except getopt.GetoptError as err:
     usage()
     sys.exit(2)
 
-outputf = "output.csv"
-inputf = "input.csv"
 
 for o, a in opts:
     if o in ("-h", "--help"):
@@ -53,11 +52,11 @@ endpoint = nscans * tr
 
 frame_times = np.arange(0.0, endpoint, tr)
 
-    
+print("Processing " + inputf)
 a = pd.read_csv(inputf)
 n_events = len(a)
-onsets = a.onset
-amplitudes = a.amplitude
+onsets = a.onset.astype(float)
+amplitudes = a.amplitude.astype(float)
 durations = np.zeros(n_events)
 
 

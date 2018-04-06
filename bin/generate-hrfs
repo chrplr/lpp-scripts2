@@ -1,9 +1,9 @@
 #! /bin/bash
 # generate convolved regressors from event files
-# Time-stamp: <2018-04-04 11:58:42 cp983411>
+# Time-stamp: <2018-04-04 15:47:40 cp983411>
 
 set -e  # Any commands which fail will cause the shell script to exit immediately
-set -x  # debug
+#set -x  # debug
 
 INPUT_DIR="$1/"
 OUTPUT_DIR="$2/" 
